@@ -20,6 +20,23 @@ public:
     }
 };
 
+node *buildtree(node *root)
+{
+    int data;
+    cout << "Enter the data: ";
+    cin >> data;
+    root = new node(data);
+
+    if (data == -1)
+    {
+        return NULL;
+    }
+    cout << "Enter data for left of " << root->data << endl;
+    root->left = buildtree(root->left);
+    cout << "Enter data for the right of " << root->data << endl;
+    root->right = buildtree(root->right);
+    return root;
+}
 // Preorder traversal
 void preorder(node *root)
 {
@@ -66,13 +83,8 @@ void postorder(node* root)
 }
 int main()
 {
-    node *root = new node(1);
-    root->left = new node(2);
-    root->right = new node(3);
-    root->left->left = new node(4);
-    root->left->right = new node(5);
-    root->right->left = new node(6);
-    root->right->right = new node(7);
+     node *root = NULL;
+    root = buildtree(root);
 
 /* 
                       1
