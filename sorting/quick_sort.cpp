@@ -9,28 +9,30 @@ void swap(int arr[], int i, int j)
     arr[j] = temp;
 }
 
-
-void quickSort(int arr[], int l, int r)
+int partition(int arr[], int start, int end)
 {
-    if (l < r)
+    int pivot = arr[end];
+    int partitionIndex = start;
+
+    for (int i = start; i < end; i++)
     {
-        int m= l+(r-l)/2;
-        int p= arr[m];
-        int i = l - 1;
-        for (int j = l; j < r; j++)
+        if (arr[i] <= pivot)
         {
-            if (arr[j] < p)
-            {
-                i++;
-                swap(arr, i, j);
-            }
+            swap(arr, i, partitionIndex);
+            partitionIndex++;
         }
-        swap(arr, i + 1, r);
+    }
+    swap(arr, partitionIndex, end);
+    return partitionIndex;
+}
 
-        int pivot = i + 1;
-
-        quickSort(arr, l, pivot - 1);
-        quickSort(arr, pivot + 1, r);
+void quickSort(int arr[], int start, int end)
+{
+    if (start < end)
+    {
+        int partitionIndex = partition(arr, start, end);
+        quickSort(arr, start, partitionIndex - 1);
+        quickSort(arr, partitionIndex + 1, end);
     }
 }
 
