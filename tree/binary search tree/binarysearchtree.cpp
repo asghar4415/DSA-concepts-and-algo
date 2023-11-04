@@ -43,11 +43,11 @@ int minvalue(node *root)
 {
     node *temp = root;
 
-    while (root->left != NULL)
+    while (temp->left != NULL)
     {
-        root = root->left;
+        temp = temp->left;
     }
-    return root->data;
+    return temp->data;
 }
 
 // deleting nodes in BST

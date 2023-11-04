@@ -74,27 +74,27 @@ void levelordertraverse(node *root)
     }
 }
 
-int minimumnode(node* root)
+int minvalue(node* root)
 {
     node* temp= root;
 
-    while(root->left != NULL)
+    while(temp->left != NULL)
     {
-        root = root->left;
+        temp = temp->left;
     }
-    return root->data;
+    return temp->data;
 }
 
 
-int maxnode(node* root)
+int maxvalue(node* root)
 {
     node* temp= root;
 
-    while(root->right != NULL)
+    while(temp->right != NULL)
     {
-        root = root->right;
+        temp = temp->right;
     }
-    return root->data;
+    return temp->data;
 }
 int main()
 {
@@ -108,8 +108,7 @@ int main()
         cin>>data;
     }
     levelordertraverse(root);
-    cout<<"The minimum node in the tree is: " <<minimumnode(root)<<endl;
-    cout<<"The maximum node in the tree is: " <<maxnode(root)<<endl;
-
+    cout<<"The minimum node in the tree is: " <<minvalue(root)<<endl;
+    cout<<"The maximum node in the tree is: " <<maxvalue(root)<<endl;
 
 }

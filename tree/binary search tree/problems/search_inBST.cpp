@@ -3,7 +3,7 @@
 
 using namespace std;
 
-
+//searching in BST
 class node
 {
 public:
