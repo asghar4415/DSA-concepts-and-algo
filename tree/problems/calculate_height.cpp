@@ -1,6 +1,6 @@
 #include <iostream>
 #include <queue>
-#include <iostream>
+
 
 using namespace std;
 //calcualte height of the tree

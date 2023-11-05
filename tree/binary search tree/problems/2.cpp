@@ -3,6 +3,8 @@
 
 using namespace std;
 
+//check whether given tree is BST.
+
 class node
 {
 public:
