@@ -23,13 +23,12 @@ int max(int a, int b)
 {
    return (a > b) ? a : b;
 }
-int minvalue(node* root)
+int minvalue(node *root)
 {
-   node* temp= root;
-   while(root->left != NULL)
+   node *temp = root;
+   while (root->left != NULL)
    {
-      root=root->left;
-
+      root = root->left;
    }
    return root->data;
 }
@@ -139,7 +138,7 @@ void inorder(node *root)
    {
       return;
    }
-   
+
    inorder(root->left);
    cout << root->data << " ";
    inorder(root->right);
@@ -180,15 +179,15 @@ node *deleteNode(node *root, int data)
          delete root;
          return temp;
       }
-       else if (root->left != NULL && root->right != NULL)
-        {
-            int min = minvalue(root->right);
-            root->data = min;
-            root->right = deleteNode(root->right, min);
-            return root;
-        }
+      else if (root->left != NULL && root->right != NULL)
+      {
+         int min = minvalue(root->right);
+         root->data = min;
+         root->right = deleteNode(root->right, min);
+         return root;
+      }
    }
-   if(root == NULL)
+   if (root == NULL)
    {
       return root;
    }
@@ -220,7 +219,6 @@ node *deleteNode(node *root, int data)
       }
    }
    return root;
-
 }
 
 int main()
