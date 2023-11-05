@@ -56,6 +56,12 @@ string infixToPrefix(string s)
             st.push(s[i]);
         }
     }
+    while(!st.empty())
+    {
+        result+=st.top();
+        st.pop();
+    
+    }
     reverse(result.begin(), result.end());
     return result;
 }
