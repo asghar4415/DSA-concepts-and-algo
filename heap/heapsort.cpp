@@ -31,9 +31,9 @@ void heapsort(int arr[], int n)
     while (size >= 0)
     {
         swap(arr[size], arr[0]);
-        size--;
-
         heapify(arr, size, 0);
+        size--;
+        
     }
 }
 
