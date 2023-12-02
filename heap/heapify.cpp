@@ -88,6 +88,14 @@ class heap
         cout<<endl;
     }
 };
+// heapify function is used to create a heap from a binary tree. It is used in the heap sort algorithm. It is used to create a max heap or a min heap from a binary tree. 
+
+//  Heapify is done in two ways: 
+
+// Bottom-up approach: we heapify each subtree starting from the bottom to the top. 
+// Bottom-up approach: We start heapifying the lowest level of the heap and move upwards till the root is heapified. Heapify procedure can be applied to a node only if its children nodes are heapified. So the heapification must be performed in the bottom-up order.
+// Top-down approach: we heapify each subtree starting from the top to the bottom. 
+//  Top-down approach: We start heapifying the root and move downwards till the last level of the heap is heapified. Heapify procedure can be applied to a node only if its children nodes are heapified. So the heapification must be performed in the top-down order.
 
 void heapify(int arr[], int n, int i)
 {
