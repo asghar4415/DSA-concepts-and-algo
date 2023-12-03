@@ -24,7 +24,17 @@ using namespace std;
 // 2. Open addressing: In this method, we store one of the strings in the same index of the hash table, and the other string in the next index of the hash table.
 
 // linear probing: It is a method of open addressing in which we store the second string in the next index of the hash table.
+//h(k) = (h(k) + i) % b
+// where h(k) is the hash value of the first string, i is the number of collisions, and b is the size of the hash table.
+
 // quadratic probing: It is a method of open addressing in which we store the second string in the next index of the hash table, but in the form of a quadratic equation.
+//h(k) = (h(k) + i^2) % b
+// where h(k) is the hash value of the first string, i is the number of collisions, and b is the size of the hash table.
+
 // double hashing: It is a method of open addressing in which we store the second string in the next index of the hash table, but by using a different hash function.
+//h(k) = (h1(k) + i * h2(k)) % b
+// where h1(k) is the hash value of the first string, h2(k) is the hash value of the second string, i is the number of collisions, and b is the size of the hash table.
 
-
+//load factor: It is the ratio of the number of elements in a hash table to the size of the hash table.
+// load factor = n / b
+// where n is the number of elements in a hash table and b is the size of the hash table.
