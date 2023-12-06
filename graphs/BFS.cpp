@@ -73,6 +73,7 @@ vector<int> BFS(int vertex, vector<pair <int, int>>edges)
     preparedAdjList(adjlist, edges);
 
     printadjList(adjlist);
+
     cout<<endl;
 //traverse all components of the graph
 for(int i = 0; i < vertex; i++)
