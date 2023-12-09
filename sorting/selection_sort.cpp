@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-    int arr[10] = { 5,1,3,6,2,9,7,4,8,10 };
+    int arr[10] = { 5,9,3,6,2,1,7,4,8,10 };
 
     for (int i = 0; i < 10; i++)
     {

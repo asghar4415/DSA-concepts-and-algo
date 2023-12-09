@@ -38,10 +38,12 @@ void quickSort(int arr[], int start, int end)
 
 int main()
 {
-    int arr[8] = {5, 6, 2, -2, 6, 10, 12, 15};
-    quickSort(arr, 0, 7);
+    int arr[] = {3, 1, -1, 0, -56, 2, 7, 9, 4, 6, 1, 6, 8, 4, 5, 7, 2};
+    int n = sizeof(arr) / sizeof(arr[0]);
 
-    for (int i = 0; i < 8; i++)
+    quickSort(arr, 0, n-1);
+
+    for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";
     }
