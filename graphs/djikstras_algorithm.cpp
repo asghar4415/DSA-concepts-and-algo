@@ -1,50 +1,90 @@
 #include <iostream>
-#include <climits>
+#include <unordered_map>
+#include <set>
+#include <algorithm>
+#include <vector>
+#include <list>
+
 using namespace std;
 
-#define V 5
-#define E 7
 
-int minDistance(int dist[], bool sptSet[]) {
-    int min = INT_MAX, min_index;
-    for (int v = 0; v < V; v++)
-        if (!sptSet[v] && dist[v] <= min)
-            min = dist[v], min_index = v;
-    return min_index;
-}
+vector<int> dijkstra(vector<vector<int>> &vec, int vertices, int edges, int source)
+{
+    // create adjacency list
+    unordered_map<int, list<pair<int, int>>> adj;
+    for (int i = 0; i < edges; i++)
+    {
+        int u = vec[i][0];
+        int v = vec[i][1];
+        int w = vec[i][2];
 
-void printSolution(int dist[]) {
-    cout << "Vertex \t Distance from Source\n";
-    for (int i = 0; i < V; i++)
-        cout << i << " \t\t " << dist[i] << endl;
-}
-
-void dijkstra(int graph[V][V], int src) {
-    int dist[V];
-    bool sptSet[V];
-    for (int i = 0; i < V; i++)
-        dist[i] = INT_MAX, sptSet[i] = false;
-    dist[src] = 0;
-
-    for (int count = 0; count < V - 1; count++) {
-        int u = minDistance(dist, sptSet);
-        sptSet[u] = true;
-        for (int v = 0; v < V; v++)
-            if (!sptSet[v] && graph[u][v] && dist[u] != INT_MAX && dist[u] + graph[u][v] < dist[v])
-                dist[v] = dist[u] + graph[u][v];
+        adj[u].push_back(make_pair(v, w));
+        adj[v].push_back(make_pair(u, w));  
+        
     }
 
-    printSolution(dist);
+    vector<int> distance(vertices);
+    for (int i=0;i<vertices;i++)
+    {
+        distance[i]=INT32_MAX;
+    }
+
+    set<pair<int,int>>set_storing;
+
+    distance[source]=0;
+    set_storing.insert(make_pair(0,source));
+
+    while(!set_storing.empty())
+    {
+        auto top=*(set_storing.begin());
+        int n_dis=top.first;
+        int only_n=top.second;
+
+        set_storing.erase(set_storing.begin());
+
+
+        for (auto neig: adj[only_n])
+        {
+            if(n_dis+neig.second<distance[neig.first])
+            {
+                auto rec= set_storing.find(make_pair(distance[neig.first],neig.first));
+                if(rec!=set_storing.end())
+                {
+                    set_storing.erase(rec);
+                }
+
+                distance[neig.first]=n_dis+neig.second;
+                set_storing.insert(make_pair(distance[neig.first],neig.first));
+            }
+        }
+    }
+    return distance;
 }
 
-int main() {
-    int graph[V][V] = { {0, 2, 0, 6, 0},
-                        {2, 0, 3, 8, 5},
-                        {0, 3, 0, 0, 7},
-                        {6, 8, 0, 0, 9},
-                        {0, 5, 7, 9, 0} };
+int main()
+{
+    int vertices = 6; // Number of vertices
+    int edges = 9; // Number of edges
 
-    dijkstra(graph, 0);
+    vector<vector<int>> vec = {
+        {0, 1,1}, 
+        {0, 2,5}, 
+        {1, 2, 2},
+        {1, 3, 2},
+        {1,4,1}, 
+        {2, 4,2},
+        {3, 4, 3},
+        {3, 5, 1},
+        {4,5,2} 
+    };
+    int source=5;
 
-    return 0;
+    vector<int> distance = dijkstra(vec, vertices, edges, source);
+
+    cout << "Shortest distances from the source vertex:" << endl;
+    for (int i = 0; i < vertices; i++)
+    {
+        cout << distance[i] << " ";
+    }
+    
 }
