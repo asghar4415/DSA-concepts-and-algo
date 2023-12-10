@@ -17,23 +17,22 @@ using namespace std;
 //BFS uses a queue data structure for storing the nodes.
 //Whenever a node is visited, all its neighbours are added to the queue.
 
-void preparedAdjList(unordered_map<int, vector<int>> adjlist, vector<pair<int, int>> & edges)
-{
-    for(int i = 0; i < edges.size(); i++ )
-    {
-       int u = edges[i].first;
-         int v = edges[i].second;
 
-            adjlist[u].push_back(v);
-            adjlist[v].push_back(u);
+void preparedAdjList(unordered_map<int, vector<int>> & adjlist, vector<pair<int, int>> edges)
+{
+    for(auto edge: edges)
+    {
+        adjlist[edge.first].push_back(edge.second);
+        adjlist[edge.second].push_back(edge.first);
     }
 }
 
-void bfs(unordered_map<int, vector<int>> & adjList, unordered_map<int, bool> & visited, vector<int> & ans, int node)
+
+void bfs(unordered_map<int, vector<int>> adjlist, unordered_map<int, bool> & visited, vector<int> & ans, int src)
 {
     queue<int> q;
-    q.push(node);
-    visited[node] = true;
+    q.push(src);
+    visited[src] = true;
 
     while(!q.empty())
     {
@@ -41,7 +40,7 @@ void bfs(unordered_map<int, vector<int>> & adjList, unordered_map<int, bool> & v
         q.pop();
         ans.push_back(node);
 
-        for(auto neighbour: adjList[node])
+        for(auto neighbour: adjlist[node])
         {
             if(visited[neighbour] == false)
             {
@@ -51,54 +50,67 @@ void bfs(unordered_map<int, vector<int>> & adjList, unordered_map<int, bool> & v
         }
     }
 }
+
+
 void printadjList(unordered_map<int, vector<int>> adjlist)
 {
-    for(auto node: adjlist)
+    for(auto i: adjlist)
     {
-        cout << node.first << "->";
-        for(auto neighbour: node.second)
+        cout<<i.first<<"->";
+        for(auto j: i.second)
         {
-            cout << neighbour << ",";
+            cout<<j<<",";
         }
-        cout << endl;
+        cout<<endl;
     }
 }
 
-vector<int> BFS(int vertex, vector<pair <int, int>>edges)
+vector<int> BFS(int vertex, vector<pair<int, int>> edges)
 {
-    unordered_map<int, vector<int>> adjlist;
-    vector<int> ans;
+    unordered_map<int, vector<int>> adjList;
     unordered_map<int, bool> visited;
+    vector<int> ans;
 
-    preparedAdjList(adjlist, edges);
+    preparedAdjList(adjList, edges);
+    // printadjList(adjList);
 
-    printadjList(adjlist);
-
-    cout<<endl;
-//traverse all components of the graph
-for(int i = 0; i < vertex; i++)
-{
-    if(visited[i] == false)
+    for(int i = 1; i <=vertex; i++)
     {
-        bfs(adjlist, visited, ans, i);
+        visited[i] = false;
     }
 
-}
-return ans;
+    for(int i = 1; i <=vertex; i++)
+    {
+        if(visited[i] == false)
+        {
+            bfs(adjList, visited, ans, i);
+        }
+    }
+    return ans;
 }
 
 
 int main()
 {
-    int vertex = 4;
-    vector<pair<int, int>> edges = {{4, 4}, {0, 1}, {0, 3}, {1, 2}, {2, 3}};
-    vector<int> ans = BFS(vertex, edges);
-
-
-    for(int i = 0; i < ans.size(); i++)
+    int vertex, edge;
+    cout<<"Enter number of vertices: ";
+    cin>>vertex;
+    cout<<"Enter number of edges: ";
+    cin>>edge;
+    vector<pair<int, int>> edges;
+    for(int i=1;i<=edge; i++)
     {
-        cout << ans[i] << " ";
+        int u,v; 
+        cout<<"Enter edge "<<i<<": ";
+        cin>>u>>v;
+        edges.push_back({u,v});
+    }
+    vector<int> ans = BFS(vertex, edges);
+    for(auto i: ans)
+    {
+        cout << i << " ";
     }
     cout << endl;
+
     return 0;
 }
