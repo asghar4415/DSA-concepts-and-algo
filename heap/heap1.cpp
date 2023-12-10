@@ -84,7 +84,7 @@ int main()
     h.insert(30);
     h.insert(40);
     h.insert(50);
- 
+
     h.print();
     h.deletionatroot();
     h.print();

@@ -122,16 +122,16 @@ void heapify(int arr[], int n, int i)
 
 int main()
 {
-    heap h;
-    h.insert(10);
-    h.insert(20);
-    h.insert(30);
-    h.insert(40);
-    h.insert(50);
+    // heap h;
+    // h.insert(10);
+    // h.insert(20);
+    // h.insert(30);
+    // h.insert(40);
+    // h.insert(50);
 
-    h.print();
-    h.deletionatroot();
-    h.print();
+    // h.print();
+    // h.deletionatroot();
+    // h.print();
 
     int arr[]={ 54, 53, 55, 52, 50};
     int n= sizeof(arr)/sizeof(arr[0]);
