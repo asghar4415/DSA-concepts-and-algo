@@ -80,7 +80,7 @@ int height(node* root)
     int left= height(root->left);
     int right= height(root->right);
 
-    int ans= max(left, right)+ 1;
+    int ans= max(left, right)+1;
     return ans;
 
 }

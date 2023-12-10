@@ -22,8 +22,7 @@ public:
     }
 
     
-};
-
+}; 
 int main()
 {
     node *root= new node(1);
@@ -31,8 +30,7 @@ int main()
     root->right = new node(3);
     root->left->left  = new node(4);
     root->left->right = new node(5);
-
-
+    
     return 0;
 }
 
