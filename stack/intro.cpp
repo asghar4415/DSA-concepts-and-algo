@@ -25,7 +25,7 @@ public:
     }
     int a[MAX];
     bool push(int x);
-    int pop();
+    void pop();
     int peek();
     bool isEmpty();
 };
@@ -42,18 +42,14 @@ bool stack::push(int x)
         return -1;
     }
 }
-int stack::pop()
+void stack::pop()
 {
     if (top > -1)
     {
         top--;
-        return a[top];
     }
     else
-    {
         cout << "stack underflow" << endl;
-        return -1;
-    }
 }
 int stack::peek()
 {

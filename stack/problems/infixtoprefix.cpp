@@ -60,7 +60,6 @@ string infixToPrefix(string s)
     {
         result+=st.top();
         st.pop();
-    
     }
     reverse(result.begin(), result.end());
     return result;
