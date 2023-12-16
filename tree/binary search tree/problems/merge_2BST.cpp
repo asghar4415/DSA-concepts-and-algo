@@ -83,21 +83,19 @@ void levelordertraverse(node *root)
         }
     }
 }
-vector<int> inorder(node* root) {
-    vector<int> result;
-    if (root == NULL) {
-        return result;
-    }
-    vector<int> left = inorder(root->left);
-    result.insert(result.end(), left.begin(), left.end());
-    result.push_back(root->data);
-    vector<int> right = inorder(root->right);
-    result.insert(result.end(), right.begin(), right.end());
-    return result;
+void inorder(node* root, vector<int>&in) {
+   if (root == NULL)
+   {
+    return ;
+   }
+   inorder(root->left, in);
+   in.push_back(root->data);
+   inorder(root->right, in);
 }
 node* mergeBST(node* root1, node* root2)
 {
-    vector <int> r2= inorder(root2);
+    vector <int> r2;
+    inorder(root2, r2);
 
      for (int i = 0; i < r2.size(); i++) {
            root1= insertnode(root1, r2[i]);
