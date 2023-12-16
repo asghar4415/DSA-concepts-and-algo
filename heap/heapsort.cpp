@@ -27,13 +27,11 @@ void heapify(int arr[], int n, int i)
 }
 void heapsort(int arr[], int n)
 {
-    int size = n - 1;
-    while (size >= 0)
+
+    for (int i = n - 1; i >=0; i--)
     {
-        swap(arr[size], arr[0]);
-        heapify(arr, size, 0);
-        size--;
-        
+        swap(arr[i], arr[0]);
+        heapify(arr, i, 0);
     }
 }
 

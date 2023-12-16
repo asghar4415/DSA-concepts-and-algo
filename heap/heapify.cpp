@@ -92,9 +92,8 @@ class heap
 
 //  Heapify is done in two ways: 
 
-// Bottom-up approach: we heapify each subtree starting from the bottom to the top. 
-// Bottom-up approach: We start heapifying the lowest level of the heap and move upwards till the root is heapified. Heapify procedure can be applied to a node only if its children nodes are heapified. So the heapification must be performed in the bottom-up order.
-// Top-down approach: we heapify each subtree starting from the top to the bottom. 
+
+// Bottom-up approach: We start heapifying the lowest level of the heap and move upwards till the root is heapified. Heapify procedure can be applied to a node only if its children nodes are heapified. So the heapification must be performed in the bottom-up order. 
 //  Top-down approach: We start heapifying the root and move downwards till the last level of the heap is heapified. Heapify procedure can be applied to a node only if its children nodes are heapified. So the heapification must be performed in the top-down order.
 
 void heapify(int arr[], int n, int i)
@@ -122,18 +121,8 @@ void heapify(int arr[], int n, int i)
 
 int main()
 {
-    // heap h;
-    // h.insert(10);
-    // h.insert(20);
-    // h.insert(30);
-    // h.insert(40);
-    // h.insert(50);
 
-    // h.print();
-    // h.deletionatroot();
-    // h.print();
-
-    int arr[]={ 54, 53, 55, 52, 50};
+    int arr[]={ 15, 18, 45, 30, 12};
     int n= sizeof(arr)/sizeof(arr[0]);
 
     for(int i=n/2-1;i>=0;i--)
