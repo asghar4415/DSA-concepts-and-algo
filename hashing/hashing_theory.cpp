@@ -35,6 +35,6 @@ using namespace std;
 //h(k) = (h1(k) + i * h2(k)) % b
 // where h1(k) is the hash value of the first string, h2(k) is the hash value of the second string, i is the number of collisions, and b is the size of the hash table.
 
-//load factor: It is the ratio of the number of elements in a hash table to the size of the hash table.
+//load factor: It is the ratio of the number of keys to the size of the hash table.
 // load factor = n / b
-// where n is the number of elements in a hash table and b is the size of the hash table.
+// where n is the number keys and b is the size of the hash table.

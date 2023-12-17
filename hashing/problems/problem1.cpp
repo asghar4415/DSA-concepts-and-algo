@@ -34,6 +34,6 @@ int maximumfrequency(vector<int> &arr, int n)
 
 int main()
 {
-    vector<int> arr= {1,2,3,1,2};
+    vector<int> arr= {1,2,2,3,1,2};
     cout<< maximumfrequency(arr,arr.size())<<endl;
 }
