@@ -1,116 +1,103 @@
-#include <iostream>
-#include <vector>
-#include <unordered_map>
-#include <list>
-#include <queue>
-
+#include<iostream>
 using namespace std;
 
-//Breadth First Search: (BFS)  
-//BFS is a traversing algorithm where you should start traversing from a selected node (source or starting node) 
-//and traverse the graph layerwise thus exploring the neighbour nodes (nodes which are directly connected to source node).
-//You must then move towards the next-level neighbour nodes.
-//As the name BFS suggests, you are required to traverse the graph breadthwise as follows:
-//1. First move horizontally and visit all the nodes of the current layer
-//2. Move to the next layer
+class Graph{
+    int v;
+    int **adj;
 
-//BFS uses a queue data structure for storing the nodes.
-//Whenever a node is visited, all its neighbours are added to the queue.
-
-
-void preparedAdjList(unordered_map<int, vector<int>> & adjlist, vector<pair<int, int>> edges)
-{
-    for(auto edge: edges)
+    public:
+    Graph(int v)
     {
-        adjlist[edge.first].push_back(edge.second);
-        adjlist[edge.second].push_back(edge.first);
-    }
-}
-
-
-void bfs(unordered_map<int, vector<int>> adjlist, unordered_map<int, bool> & visited, vector<int> & ans, int src)
-{
-    queue<int> q;
-    q.push(src);
-    visited[src] = true;
-
-    while(!q.empty())
-    {
-        int node = q.front();
-        q.pop();
-        ans.push_back(node);
-
-        for(auto neighbour: adjlist[node])
+        this->v=v;
+        adj=new int*[v];
+        for(int i=0;i<v;i++)
         {
-            if(visited[neighbour] == false)
+            adj[i]=new int[v];
+            for(int j=0;j<v;j++)
             {
-                q.push(neighbour);
-                visited[neighbour] = true;
+                adj[i][j]=0;
             }
         }
     }
-}
-
-
-void printadjList(unordered_map<int, vector<int>> adjlist)
-{
-    for(auto i: adjlist)
+    void addEdge(int u,int v)
     {
-        cout<<i.first<<"->";
-        for(auto j: i.second)
-        {
-            cout<<j<<",";
-        }
-        cout<<endl;
+        adj[u][v]=1;
+        adj[v][u]=1;
     }
-}
-
-vector<int> BFS(int vertex, vector<pair<int, int>> edges)
-{
-    unordered_map<int, vector<int>> adjList;
-    unordered_map<int, bool> visited;
-    vector<int> ans;
-
-    preparedAdjList(adjList, edges);
-    // printadjList(adjList);
-
-    for(int i = 1; i <=vertex; i++)
+    void display()
     {
-        visited[i] = false;
-    }
-
-    for(int i = 1; i <=vertex; i++)
-    {
-        if(visited[i] == false)
+        for(int i=0;i<v;i++)
         {
-            bfs(adjList, visited, ans, i);
+            for(int j=0;j<v;j++)
+            {
+                cout<<adj[i][j]<<" ";
+            }
+            cout<<endl;
         }
     }
-    return ans;
-}
+    void bfs(int s)
+    {
+        bool *visited=new bool[v];
+        for(int i=0;i<v;i++)
+        {
+            visited[i]=false;
+        }
+        visited[s]=true;
+        int *q=new int[v];
+        int front=0,rear=0;
+        q[rear]=s;
+        while(front<=rear)
+        {
+            int u=q[front];
+            cout<<u<<" ";
+            front++;
+            for(int i=0;i<v;i++)
+            {
+                if(adj[u][i]==1 && visited[i]==false)
+                {
+                    visited[i]=true;
+                    rear++;
+                    q[rear]=i;
+                }
+            }
+        }
+    }
 
+    void adjlist()
+    {
+        for(int i=0;i<v;i++)
+        {
+            cout<<i<<"->";
+            for(int j=0;j<v;j++)
+            {
+                if(adj[i][j]==1)
+                {
+                    cout<<j<<" ";
+                }
+            }
+            cout<<endl;
+        }
+    }
+};
 
 int main()
 {
-    int vertex, edge;
-    cout<<"Enter number of vertices: ";
-    cin>>vertex;
-    cout<<"Enter number of edges: ";
-    cin>>edge;
-    vector<pair<int, int>> edges;
-    for(int i=1;i<=edge; i++)
-    {
-        int u,v; 
-        cout<<"Enter edge "<<i<<": ";
-        cin>>u>>v;
-        edges.push_back({u,v});
-    }
-    vector<int> ans = BFS(vertex, edges);
-    for(auto i: ans)
-    {
-        cout << i << " ";
-    }
-    cout << endl;
+    Graph g(5);
+    g.addEdge(0,1);
+    g.addEdge(0,2);
+    g.addEdge(0,4);
+    g.addEdge(1,3);
+    g.addEdge(2,3);
+    g.addEdge(3,4);
 
+   g.display();
+cout<<endl;
+    cout<<"BFS: ";
+    g.bfs(0);
+    cout<<endl;
+
+    
+
+    g.adjlist();
     return 0;
 }
